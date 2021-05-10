@@ -25,7 +25,7 @@ def main():
             part1 + str(int(day) + 2) + '-' + month + part2,
             part1 + str(int(day) + 3) + '-' + month + part2]
 
-    song = AudioSegment.from_mp3('/Users/abeervaishnav/Documents/Coding/Python-programs/Cowin-alert/siren.mp3')
+    song = AudioSegment.from_mp3('/Users/abeervaishnav/Documents/Coding/Python-programs/Cowin-appointment-alert/siren.mp3')
 
     open_centers = []
 
