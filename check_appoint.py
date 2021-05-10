@@ -6,18 +6,15 @@ from pydub import AudioSegment
 from pydub.playback import play
 
 def main():
-    pin = input('Enter PIN code: ')
     day = input('Enter day: ')
     month = input('Enter month: ')
     time = int(input('Enter time interval for checking (min): '))
-    num_centers = int(input('Enter number of centers to be tacked: '))
 
-    open_centers = []
-    center_names = []
-    print()
-    print('For the following step, enter the name of the center or a part of the name:-')
-    for i in range(num_centers):
-        center_names.append(input(f'Enter center-{i+1}: ').lower())
+    f = open('./config.json',)
+    config = json.load(f)
+    pin = str(config['pin'])
+    center_names = [s.lower() for s in config['center_names']]
+    f.close()
 
     part1 = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=" + pin + "&date="
     part2 = "-2021"
@@ -28,12 +25,14 @@ def main():
             part1 + str(int(day) + 2) + '-' + month + part2,
             part1 + str(int(day) + 3) + '-' + month + part2]
 
-    song = AudioSegment.from_mp3('./siren.mp3')
+    song = AudioSegment.from_mp3('/Users/abeervaishnav/Documents/Coding/Python-programs/Cowin-alert/siren.mp3')
+
+    open_centers = []
 
     print()
     print(f'Tracking update set to every {time}-minute(s).')
     while True:
-        print('Checking...')
+        print(f'Checking... {day}, {int(day)+1}, {int(day)+2}, {int(day)+3}')
         open_centers = []
         for i in range(4):
             res = requests.get(cmds[i], headers=header)
@@ -43,16 +42,26 @@ def main():
             for center in sessions_json['sessions']:
                 for name in center_names:
                     if name in center['name'].lower():
-                        open_centers.append([center['name'], int(day)+i])
+                        open_centers.append([center['name'], int(day)+i, center['available_capacity'], center['min_age_limit']])
+
+            if len(sessions_json['sessions']) > 0:
+                print(f'\nAll available slots on {int(day)+i}/{month}')
+                print('Center name : [Date] : [Doses] : (Age limit)')
+                print('-----------------------------------------------------------------------')
+                for center in sessions_json['sessions']:
+                    print(f"{center['name']} : [{int(day)+i}/{month}] : [{center['available_capacity']} doses] : ({center['min_age_limit']}+)")
+
+        print()
 
         if len(open_centers) > 0:
-            print('\n\n\n')
+            print('\n\n\nSlots targetted by you:')
+            print('Center name : [Date] : [Doses] : (Age limit)')
+            print('-----------------------------------------------------------------------')
             for oc in open_centers:
-                print(f'{oc[0]} on {oc[1]}th : OPEN!!!!!!!!!')
+                print(f'{oc[0]} : [{oc[1]}/{month}] : [{oc[2]} doses] : ({oc[3]}+)')
 
             print('\n\n\n')
 
-            play(song)
             play(song)
             play(song)
             sleep(1.0)

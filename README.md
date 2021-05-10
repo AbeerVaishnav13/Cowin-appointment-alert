@@ -13,18 +13,16 @@ $ pip install --upgrade requests
 ```
 
 # How to run?
+1. Edit the `config.json` file and put your **PIN code** and the **Center names** (either full name or a unique part of the name) that you want to track.
+2. Execute the python file `check_appoint.py` as shown below.
 ```
 $ python3 check_appoint.py
 ```
 
 # Input parameters
-1. **PIN code:** Enter the PIN-code/ZIP-code of your area.
-2. **Day and Month:** Enter the day and month for which you want to check the appointments.
-```
-Disclaimer: The app automatically checks for appointments for upto 4 days from the date given by you.
-```
-3. **Time interval:** This is the time interval with which you cant to check for available appointments.
-4. **Centers to track:** This is a list of centers that you cant to keep track for. Just enter the full name of the centers or a part of their name.
+1. **Day and Month:** Enter the day and month for which you want to check the appointments.
+**Disclaimer: The app automatically checks for appointments for upto 4 days from the date given by you.** <br>
+2. **Time interval:** This is the time interval with which you cant to check for available appointments.
 
 
 
