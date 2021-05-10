@@ -3,13 +3,10 @@ This is a simple python app for checking the CoWin server for available appointm
 
 # Dependencies & Installation
 1. **PyDub**: This is a library to play the audio bundles with this app.
-```
-$ pip install --upgrade pydub
-```
-
 2. **Requests:** This library is essential to retrieve information about appointments from the CoWin server.
+3. **Tabulate:** To pretty-print the schedules as an ascii-table.
 ```
-$ pip install --upgrade requests
+$ pip install --upgrade pydub requests tabulate
 ```
 
 # How to run?

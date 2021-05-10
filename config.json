@@ -1,5 +1,6 @@
 {
 	"pin": 462001,
+	"min_age_limit": 45,
 	"center_names": [
 		"sardar",
 		"nishatpura",
