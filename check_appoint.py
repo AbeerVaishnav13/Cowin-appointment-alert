@@ -40,7 +40,7 @@ def get_data(url, header, center_names, day, month, age, it):
 
     for center in sessions_json['sessions']:
         for name in center_names:
-            if name in center['name'].lower() and center['min_age_limit'] == age:
+            if name in center['name'].lower() and center['min_age_limit'] >= age:
                 open_centers.append([center['name'],
                                      f'{int(day)+it}/{month}',
                                      center['available_capacity'],
