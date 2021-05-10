@@ -22,8 +22,11 @@ $ python3 check_appoint.py
 # Input parameters
 1. **Day and Month:** Enter the day and month for which you want to check the appointments.
 **Disclaimer: The app automatically checks for appointments for upto 4 days from the date given by you.** <br>
-2. **Time interval:** This is the time interval with which you cant to check for available appointments.
 
+2. **Time interval:** This is the time interval with which you want to check for available appointments.
+<br>
+<br>
+<br>
 
 
 Try the app out and get updates on the vaccinations easily! :)
